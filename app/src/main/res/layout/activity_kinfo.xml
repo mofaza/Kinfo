@@ -1,18 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".KinfoActivity">
+    tools:context=".KinfoActivity"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    android:weightSum="100"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        >
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/kinfoLogo"
+            android:layout_width="252dp"
+            android:layout_height="342dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/logo"
+            app:srcCompat="@drawable/kidfo" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        >
+
+
+        <Button
+            android:id="@+id/buttonSearchKinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search_kinfo"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/buttonOrange"
+            android:textSize="18sp"
+            android:textColor="@color/colorWhite"
+            />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonSearchKinfo"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <Button
+                android:id="@+id/buttonSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/buttonTransparent"
+                android:textColor="@color/colorWhite"
+
+                />
+
+            <Button
+
+                android:id="@+id/buttonLogIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/log_in"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:background="@drawable/buttonYellow"
+                android:textColor="@color/colorBlack"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
+
