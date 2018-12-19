@@ -21,4 +21,8 @@
     <string name="address">Address</string>
     <string name="add_extra_grownup">ADD ANOTHER GROWN UP</string>
     <string name="finish">FINISH</string>
+    <string name="name">Filip Danielsson</string>
+    <string name="hi">Hi!</string>
+    <string name="relationship">Mum</string>
+    <string name="grownups_name_SET">Louise</string>
 </resources>

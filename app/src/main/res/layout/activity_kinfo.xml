@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".KinfoActivity"
+    android:theme="@style/KinfoTheme"
+    android:background="@color/colorBackground"
+    >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/top_orange">
+
+        <TextView
+            android:id="@+id/kid_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/name"
+            android:textSize="35sp"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/kidPicture"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        app:srcCompat="@drawable/button_orange"
+        android:layout_below="@id/relativeLayout1"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:elevation="1dp"
+
+        />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/whiteBox1"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/box_white"
+        android:layout_below="@id/relativeLayout1"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="30dp"
+        android:weightSum="2"
+        android:paddingTop="15dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginStart="120dp"
+            >
+
+            <ImageView
+                android:id="@+id/foodAllergies"
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/food"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/foodAllergies_SET"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:text="Gluten intolerant"
+                android:textColor="@color/textGray"
+                android:textSize="12sp"
+                android:layout_weight="2"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginStart="120dp"
+            >
+
+            <ImageView
+                android:id="@+id/animalAllergies"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/animals"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/animalAllergies_SET"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:text="No"
+                android:textColor="@color/textGray"
+                android:textSize="12sp"
+                android:layout_weight="2"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearlayout2"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/kidPicture"
+        android:background="@drawable/box_white"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="30dp"
+        android:elevation="8dp"
+        >
+
+
+        <TextView
+            android:id="@+id/hi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hi"
+            android:textColor="@color/colorDarkGray"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto"
+            android:text="This is our son Filip. \nCall us if you need anything!  :D"
+            android:textColor="@color/textGray"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/parents_names"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/roboto_italic"
+            android:text="Louise and Elias"
+            android:textAlignment="textEnd"
+            android:textColor="@color/textGray"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_parent1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearlayout2"
+        android:background="@drawable/box_white"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="30dp"
+        android:elevation="8dp"
+        >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="20dp"
+            app:srcCompat="@drawable/button_yellow"
+            />
+
+        <LinearLayout
+            android:id="@+id/smallLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/relationship"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/relationship"
+                android:textColor="@color/textGray"
+                android:fontFamily="@font/roboto"
+                android:textStyle="bold"
+                android:textSize="20sp"
+
+                />
+            <TextView
+                android:id="@+id/grownup_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grownups_name_SET"
+                android:textColor="@color/colorOrange"
+                android:fontFamily="@font/roboto"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/smallis"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:weightSum="3"
+            >
+
+            <ImageView
+                android:id="@+id/call"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/call"
+                />
+
+            <ImageView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/text"
+                />
+
+            <ImageView
+                android:id="@+id/address"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/address"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
