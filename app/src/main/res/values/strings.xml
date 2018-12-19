@@ -14,4 +14,11 @@
     <string name="kids_favorite_animal">Kid\'s favorite animal</string>
     <string name="cancel">CANCEL</string>
     <string name="next">NEXT</string>
+    <string name="add_grownup">Add grown up</string>
+    <string name="grownups_name_full">Grown up\'s name (full)</string>
+    <string name="relation_to_kid">Relationship to kid</string>
+    <string name="phone_number">Mobile phone number</string>
+    <string name="address">Address</string>
+    <string name="add_extra_grownup">ADD ANOTHER GROWN UP</string>
+    <string name="finish">FINISH</string>
 </resources>

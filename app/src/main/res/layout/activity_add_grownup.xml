@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddKidActivity"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    >
+
+    <TextView
+        android:id="@+id/Add_kid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_black"
+        android:text="@string/add_grownup"
+        android:textSize="35sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+
+    <Button
+        android:id="@+id/add_photo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/add_photo_button"
+        android:layout_below="@id/Add_kid"
+        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearlayout1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_photo"
+        android:layout_marginTop="50dp">
+
+        <EditText
+            android:id="@+id/editText_addGrownupsName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/grownups_name_full"
+            />
+
+        <EditText
+            android:id="@+id/editText_relationToKid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/relation_to_kid"
+            android:layout_marginTop="20dp"
+            />
+
+        <EditText
+            android:id="@+id/editText_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            android:layout_marginTop="20dp"
+            />
+
+        <EditText
+            android:id="@+id/editText_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:layout_marginTop="20dp"
+
+            />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAddExtraGrownup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_extra_grownup"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
+        android:background="@drawable/button_blue"
+        android:textColor="@color/colorWhite"
+        android:layout_below="@id/linearlayout1"
+        />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/buttonAddExtraGrownup"
+        >
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:layout_weight="1"
+            android:layout_marginEnd="5dp"
+            android:textSize="18sp"
+            android:background="@drawable/button_transparent_blue"
+            android:textColor="@color/colorPrimaryDark"
+
+            />
+
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finish"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:background="@drawable/button_orange"
+            android:textColor="@color/colorWhite"
+            />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
