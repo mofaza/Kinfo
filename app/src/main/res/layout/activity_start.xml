@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".KinfoActivity"
+    tools:context=".StartActivity"
     android:background="@color/colorBackground"
     android:orientation="vertical"
     android:weightSum="100"
@@ -18,18 +18,28 @@
 
         <ImageView
             android:id="@+id/kinfoLogo"
+            android:layout_width="173dp"
+            android:layout_height="238dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/logo"
+            app:srcCompat="@drawable/kidfo"
+            android:layout_marginTop="70dp"/>
+
+        <ImageView
+            android:id="@+id/kinfoText"
             android:layout_width="252dp"
             android:layout_height="342dp"
             android:layout_centerInParent="true"
             android:contentDescription="@string/logo"
-            app:srcCompat="@drawable/kidfo" />
+            app:srcCompat="@drawable/kinfo"
+            android:layout_below="@id/kinfoLogo"/>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50"
+        android:layout_weight="30"
         >
 
 
@@ -41,7 +51,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/buttonOrange"
+            android:background="@drawable/button_orange"
             android:textSize="18sp"
             android:textColor="@color/colorWhite"
             />
@@ -65,13 +75,12 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="5dp"
                 android:textSize="18sp"
-                android:background="@drawable/buttonTransparent"
+                android:background="@drawable/button_transparent"
                 android:textColor="@color/colorWhite"
 
                 />
 
             <Button
-
                 android:id="@+id/buttonLogIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,7 +88,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:textSize="18sp"
-                android:background="@drawable/buttonYellow"
+                android:background="@drawable/button_yellow"
                 android:textColor="@color/colorBlack"
                 />
 

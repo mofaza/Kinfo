@@ -4,4 +4,6 @@
     <string name="search_kinfo">SEARCH KINFO</string>
     <string name="sign_up">SIGN UP</string>
     <string name="log_in">LOG IN</string>
+    <string name="kids_name">Kid\'s name</string>
+    <string name="password">Password</string>
 </resources>
