@@ -58,6 +58,7 @@
                 android:layout_height="match_parent"
                 android:hint="@string/kids_name"
                 app:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
                 />
 
             <android.support.v7.widget.AppCompatEditText
@@ -66,6 +67,8 @@
                 android:layout_height="match_parent"
                 android:hint="@string/password"
                 app:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+
                 />
 
             <Button
