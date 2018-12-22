@@ -19,6 +19,7 @@
         android:textSize="35sp"
         android:layout_marginTop="30dp"
         android:textColor="@color/colorPrimaryDark"
+        tools:context="elias.lind.kinfo.AddGrownupActivity"
         />
 
 
@@ -31,48 +32,77 @@
         android:layout_below="@id/Add_kid"
         android:layout_marginTop="30dp"/>
 
-    <LinearLayout
-        android:id="@+id/linearlayout1"
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/add_photo"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        tools:context="elias.lind.kinfo.AddGrownupActivity"
+        android:scrollbars="none"
+        android:layout_above="@id/buttonAddExtraGrownup"
+        >
 
-        <EditText
-            android:id="@+id/editText_addGrownupsName"
+        <LinearLayout
+            android:id="@+id/linearlayout1"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/grownups_name_full"
-            />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editText_relationToKid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/relation_to_kid"
-            android:layout_marginTop="20dp"
-            />
+            <EditText
+                android:id="@+id/editText_addGrownupsName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/grownups_name_full"
+                />
 
-        <EditText
-            android:id="@+id/editText_phoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/phone_number"
-            android:layout_marginTop="20dp"
-            />
+            <EditText
+                android:id="@+id/editText_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/email"
+                />
 
-        <EditText
-            android:id="@+id/editText_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/address"
-            android:layout_marginTop="20dp"
+            <EditText
+                android:id="@+id/editText_emailcheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
 
-            />
+                android:hint="@string/email_check"
+                />
+
+            <EditText
+                android:id="@+id/editText_relationToKid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/relation_to_kid"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:id="@+id/editText_phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:id="@+id/editText_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address"
+                android:layout_marginTop="20dp"
+
+                />
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
 
     <Button
         android:id="@+id/buttonAddExtraGrownup"
@@ -80,21 +110,21 @@
         android:layout_height="wrap_content"
         android:text="@string/add_extra_grownup"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
         android:textSize="18sp"
         android:background="@drawable/button_blue"
         android:textColor="@color/colorWhite"
-        android:layout_below="@id/linearlayout1"
+        android:layout_above="@id/buttonlayout"
         />
 
 
     <LinearLayout
+        android:id="@+id/buttonlayout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/buttonAddExtraGrownup"
+        android:layout_alignParentBottom="true"
         >
 
         <Button
@@ -111,7 +141,7 @@
             />
 
         <Button
-            android:id="@+id/buttonNext"
+            android:id="@+id/buttonFinish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/finish"

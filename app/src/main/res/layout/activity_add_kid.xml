@@ -22,68 +22,103 @@
         />
 
 
-    <Button
+    <ImageButton
         android:id="@+id/add_photo"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:scaleType="fitCenter"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/add_photo_button"
         android:layout_below="@id/Add_kid"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:onClick="pic"
+        android:background="@drawable/add_photo_button"
+        />
 
-    <LinearLayout
-        android:id="@+id/linearlayout1"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+    <elias.lind.kinfo.CircularImageView
+        android:id="@+id/profilepic"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Add_kid"
+        android:layout_marginTop="30dp"
+        android:rotation="-90"/>
+
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/add_photo"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="30dp"
+        android:layout_above="@id/buttonlayout"
+        android:layout_marginBottom="10dp"
+        tools:context="elias.lind.kinfo.AddKidActivity"
+        android:scrollbars="none"
+        >
 
-        <EditText
-            android:id="@+id/editText_addKidsName"
+        <LinearLayout
+            android:id="@+id/linearlayout1"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/kids_name_full"
-            />
+>
 
-        <EditText
-            android:id="@+id/editText_foodAllergies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/food_allergies"
-            android:layout_marginTop="20dp"
-            />
+            <EditText
+                android:id="@+id/editText_addKidsName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/kids_name_full"
+                />
 
-        <EditText
-            android:id="@+id/editText_animalAllergies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/animal_allergies"
-            android:layout_marginTop="20dp"
-            />
+            <EditText
+                android:id="@+id/editText_foodAllergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/food_allergies"
+                android:layout_marginTop="20dp"
+                />
 
-        <EditText
-            android:id="@+id/editText_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/message"
-            android:layout_marginTop="20dp"
+            <EditText
+                android:id="@+id/editText_animalAllergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/animal_allergies"
+                android:layout_marginTop="20dp"
+                />
 
-            />
+            <EditText
+                android:id="@+id/editText_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/message"
+                android:layout_marginTop="20dp"
 
-        <EditText
-            android:id="@+id/editText_favoriteAnimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/kids_favorite_animal"
-            android:layout_marginTop="20dp"
+                />
 
-            />
-        
-    </LinearLayout>
+            <EditText
+                android:id="@+id/editText_favoriteAnimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/kids_favorite_animal"
+                android:layout_marginTop="20dp"
+
+                />
+
+            <EditText
+                android:id="@+id/editText_favoriteAnimalCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/kids_favorite_animal_check"
+                android:layout_marginTop="20dp"
+                />
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
     <LinearLayout
+        android:id="@+id/buttonlayout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,6 +140,7 @@
             android:textSize="18sp"
             android:background="@drawable/button_transparent_blue"
             android:textColor="@color/colorPrimaryDark"
+            android:onClick="cancel"
 
             />
 
@@ -118,6 +154,7 @@
             android:textSize="18sp"
             android:background="@drawable/button_orange"
             android:textColor="@color/colorWhite"
+            android:onClick="next"
             />
 
 

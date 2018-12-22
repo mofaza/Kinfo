@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "11998481203",
+    "firebase_url": "https://kinfo-5441d.firebaseio.com",
+    "project_id": "kinfo-5441d",
+    "storage_bucket": "kinfo-5441d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11998481203:android:5d867d21f5a2ac24",
+        "android_client_info": {
+          "package_name": "elias.lind.kinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11998481203-p1fhgc6bfrmgjhej3aahkdebfp7dvnn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1aPKhEG20g3F7EY-yZyPVmLGseZiW2nU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
