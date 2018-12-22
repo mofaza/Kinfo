@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
@@ -110,7 +113,12 @@ public class AddKidActivity extends AppCompatActivity {
         String animalAller = mAnimalAllergies.getText().toString();
         String message = mMessage.getText().toString();
         String password = mPassword.getText().toString();
-        mAuth.createUserWithEmailAndPassword(name, password);
+        mAuth.createUserWithEmailAndPassword(name, password).addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
+
+            }
+        });
 
 
 
