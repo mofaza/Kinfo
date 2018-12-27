@@ -28,4 +28,7 @@
     <string name="kids_favorite_animal_check">Password again</string>
     <string name="email">Email address</string>
     <string name="email_check">Email address (again)</string>
+    <string name="title_activity_login_kid">LoginKidActivity</string>
+    <string name="gluten_intolerant">Gluten intolerant</string>
+    <string name="no">No</string>
 </resources>
