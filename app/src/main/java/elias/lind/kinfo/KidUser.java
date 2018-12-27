@@ -16,7 +16,7 @@ public class KidUser {
     private String address;*/
 
 
-    private KidUser(String kidsname, String foodallergies, String animalallergies, String message, String password) {
+    public KidUser(String kidsname, String foodallergies, String animalallergies, String message, String password) {
         this.kidsname = kidsname;
         this.foodallergies = foodallergies;
         this.animalallergies = animalallergies;

@@ -9,7 +9,7 @@ public class GrownupUser {
     private String address;
 
 
-    private GrownupUser(String grownup, String email, String relationship, String phonenumber, String address) {
+    public GrownupUser(String grownup, String email, String relationship, String phonenumber, String address) {
         this.grownup = grownup;
         this.email = email;
         this.relationship = relationship;
