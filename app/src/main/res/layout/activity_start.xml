@@ -90,6 +90,7 @@
                 android:textSize="18sp"
                 android:background="@drawable/button_yellow"
                 android:textColor="@color/colorBlack"
+                android:onClick="login"
                 />
 
         </LinearLayout>

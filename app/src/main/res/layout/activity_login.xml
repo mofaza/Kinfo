@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity"
+    tools:context=".LoginActivity"
     android:background="@color/colorBackground"
     android:orientation="vertical"
     android:weightSum="100"
@@ -56,7 +56,7 @@
                 android:id="@+id/editText_kidsname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/kids_name"
+                android:hint="@string/email_address"
                 app:backgroundTint="@color/colorWhite"
                 android:textColorHint="@color/colorWhite"
                 />
@@ -81,6 +81,7 @@
                 android:background="@drawable/button_yellow"
                 android:textSize="18sp"
                 android:textColor="@color/colorBlack"
+                android:onClick="login"
                 />
 
         </LinearLayout>

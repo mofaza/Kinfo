@@ -40,4 +40,8 @@ public class StartActivity extends AppCompatActivity {
     }
 
 
+    public void login(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }

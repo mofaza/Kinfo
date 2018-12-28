@@ -59,7 +59,7 @@ public class LoginKidActivity extends AppCompatActivity {
         final String userId = ((LocalVars) this.getApplication()).getUID();
         Log.d("HEJE", userId);
 
-        mDatabaseReference.child(userId).addListenerForSingleValueEvent(
+        mDatabaseReference.child("User").child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -67,7 +67,7 @@ public class LoginKidActivity extends AppCompatActivity {
                         User user = dataSnapshot.getValue(User.class);
                         kidsname.setText(user.getKidsname());
                         foodallergies.setText(user.getFoodallergies());
-                        animalallergies.setText(user.getFoodallergies());
+                        animalallergies.setText(user.getAnimalallergies());
                         message.setText(user.getMessage());
                         parentnames.setText(user.getGrownup());
                         relationship.setText(user.getRelationship());

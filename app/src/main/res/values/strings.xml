@@ -31,4 +31,5 @@
     <string name="title_activity_login_kid">LoginKidActivity</string>
     <string name="gluten_intolerant">Gluten intolerant</string>
     <string name="no">No</string>
+    <string name="email_address">Email address</string>
 </resources>

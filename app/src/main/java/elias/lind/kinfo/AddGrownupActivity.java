@@ -109,7 +109,7 @@ public class AddGrownupActivity extends AddKidActivity {
             FirebaseUser user = mAuth.getCurrentUser();
             ((LocalVars) this.getApplication()).setUID(user.getUid());
 
-            mDatabaseReference.child(user.getUid()).setValue(userdata);
+            mDatabaseReference.child("User").child(user.getUid()).setValue(userdata);
 
 
 
