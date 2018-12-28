@@ -1,31 +1,36 @@
 package elias.lind.kinfo;
 
 
-public class KidUser {
+public class User {
 
     private String kidsname;
     private String foodallergies;
     private String animalallergies;
     private String message;
     private String password;
-
-    /*private String grownup;
+    private String grownup;
     private String email;
     private String relationship;
     private String phonenumber;
-    private String address;*/
+    private String address;
 
 
-    public KidUser(String kidsname, String foodallergies, String animalallergies, String message, String password) {
+    public User(String kidsname, String foodallergies, String animalallergies, String message, String password, String grownup, String email, String relationship, String phonenumber, String address) {
         this.kidsname = kidsname;
         this.foodallergies = foodallergies;
         this.animalallergies = animalallergies;
         this.message = message;
         this.password = password;
 
+        this.grownup = grownup;
+        this.email = email;
+        this.relationship = relationship;
+        this.phonenumber = phonenumber;
+        this.address = address;
+
     }
 
-    public KidUser() {
+    public User() {
     }
 
     public String getKidsname() {
@@ -46,6 +51,26 @@ public class KidUser {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getGrownup() {
+        return grownup;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRelationship() {
+        return relationship;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
 

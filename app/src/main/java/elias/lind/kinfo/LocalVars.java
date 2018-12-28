@@ -16,6 +16,8 @@ public class LocalVars extends Application {
     private String PHONE;
     private String ADDRESS;
 
+    private String UID;
+
     public String getPASSWORD() {
         return PASSWORD;
     }
@@ -94,6 +96,14 @@ public class LocalVars extends Application {
 
     public void setADDRESS(String ADDRESS) {
         this.ADDRESS = ADDRESS;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 
 }

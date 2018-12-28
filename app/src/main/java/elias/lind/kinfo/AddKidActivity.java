@@ -91,8 +91,6 @@ public class AddKidActivity extends AppCompatActivity {
         if (passwordOK){
             if (!NAME.isEmpty() && !FOODALLER.isEmpty() && !ANIMALALLER.isEmpty() && !MESSAGE.isEmpty()) {
 
-                KidUser user = new KidUser(NAME, FOODALLER, ANIMALALLER, MESSAGE, PASSWORD);
-
                 ((LocalVars) this.getApplication()).setNAME(NAME);
                 ((LocalVars) this.getApplication()).setFOODALLER(FOODALLER);
                 ((LocalVars) this.getApplication()).setANIMALALLER(ANIMALALLER);
@@ -100,8 +98,8 @@ public class AddKidActivity extends AppCompatActivity {
                 ((LocalVars) this.getApplication()).setPASSWORD(PASSWORD);
 
 
-                mDatabaseReference.child("User").child(NAME).setValue(user);
-                Toast.makeText(getBaseContext(), "It works", Toast.LENGTH_SHORT).show();
+                //mDatabaseReference.child("User").child(NAME).setValue(user);
+                //Toast.makeText(getBaseContext(), "It works", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(this, AddGrownupActivity.class);
                 startActivity(intent);

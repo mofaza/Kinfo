@@ -141,6 +141,7 @@
             android:textSize="18sp"
             android:background="@drawable/button_transparent_blue"
             android:textColor="@color/colorPrimaryDark"
+            android:onClick="makeUser"
 
             />
 
