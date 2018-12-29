@@ -16,6 +16,8 @@ public class LocalVars extends Application {
     private String PHONE;
     private String ADDRESS;
 
+    private String KIDPASSWORD;
+
     private String UID;
 
     private byte[] data;
@@ -115,5 +117,14 @@ public class LocalVars extends Application {
     public void setUID(String UID) {
         this.UID = UID;
     }
+
+    public String getKIDPASSWORD() {
+        return KIDPASSWORD;
+    }
+
+    public void setKIDPASSWORD(String KIDPASSWORD) {
+        this.KIDPASSWORD = KIDPASSWORD;
+    }
+
 
 }

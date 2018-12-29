@@ -13,9 +13,10 @@ public class User {
     private String relationship;
     private String phonenumber;
     private String address;
+    private String kidpassword;
 
 
-    public User(String kidsname, String foodallergies, String animalallergies, String message, String password, String grownup, String email, String relationship, String phonenumber, String address) {
+    public User(String kidsname, String foodallergies, String animalallergies, String message, String password, String grownup, String email, String relationship, String phonenumber, String address, String kidpassword) {
         this.kidsname = kidsname;
         this.foodallergies = foodallergies;
         this.animalallergies = animalallergies;
@@ -27,6 +28,8 @@ public class User {
         this.relationship = relationship;
         this.phonenumber = phonenumber;
         this.address = address;
+        this.kidpassword = kidpassword;
+
 
     }
 
@@ -71,6 +74,10 @@ public class User {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getKidpassword() {
+        return kidpassword;
     }
 
 

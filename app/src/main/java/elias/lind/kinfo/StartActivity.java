@@ -35,7 +35,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void signup() {
-        Intent intent = new Intent(this, AddKidActivity.class);
+        Intent intent = new Intent(this, CreateUser.class);
         startActivity(intent);
     }
 

@@ -22,14 +22,15 @@
         />
 
 
-    <Button
+    <ImageView
         android:id="@+id/add_photo_grownup"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/add_photo_button"
         android:layout_below="@id/Add_kid"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:onClick="grownuppic"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -53,25 +54,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/grownups_name_full"
-                />
-
-            <EditText
-                android:inputType="textEmailAddress"
-                android:id="@+id/editText_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/email"
-                />
-
-            <EditText
-                android:inputType="textEmailAddress"
-                android:id="@+id/editText_emailcheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-
-                android:hint="@string/email_check"
                 />
 
             <EditText
@@ -141,7 +123,6 @@
             android:textSize="18sp"
             android:background="@drawable/button_transparent_blue"
             android:textColor="@color/colorPrimaryDark"
-            android:onClick="makeUser"
 
             />
 

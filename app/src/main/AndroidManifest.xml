@@ -34,7 +34,7 @@
         <activity
             android:name=".KinfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/KinfoTheme"></activity>
+            android:theme="@style/KinfoTheme" />
 
         <meta-data
             android:name="preloaded_fonts"
@@ -43,7 +43,8 @@
         <activity
             android:name=".LoginKidActivity"
             android:label="@string/title_activity_login_kid"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".CreateUser"></activity>
     </application>
 
 </manifest>

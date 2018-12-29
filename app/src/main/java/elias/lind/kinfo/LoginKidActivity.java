@@ -49,6 +49,7 @@ public class LoginKidActivity extends AppCompatActivity {
     private TextView grownupname;
 
     private ImageView kidPicture;
+    private ImageView growupPicture;
 
     private String phone;
     private String address;
@@ -67,6 +68,8 @@ public class LoginKidActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_kid);
 
         kidPicture = findViewById(R.id.kidPicture);
+        growupPicture = findViewById(R.id.grownup_picture2);
+
         kidsname = findViewById(R.id.kid_name);
         foodallergies = findViewById(R.id.foodAllergies_SET);
         animalallergies = findViewById(R.id.animalAllergies_SET);
@@ -81,6 +84,7 @@ public class LoginKidActivity extends AppCompatActivity {
         userId = ((LocalVars) this.getApplication()).getUID();
 
         setKidPic();
+        setGrownupPic();
 
 
         mDatabaseReference.child("User").child(userId).addListenerForSingleValueEvent(
@@ -110,13 +114,36 @@ public class LoginKidActivity extends AppCompatActivity {
 
     }
 
+    private void setGrownupPic() {
+        StorageReference pathRef = mStorage.getReference();
+        StorageReference pathReference = pathRef.child(userId + "/grownuppic.jpg");
+        Log.d("DATASTUFF", pathReference.toString());
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageURL = uri.toString();
+                Glide.with(getApplicationContext())
+                        .load(imageURL)
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(growupPicture);
+                growupPicture.setRotation(90);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+    }
+
+
     private void setKidPic() {
         mStorage = FirebaseStorage.getInstance();
 
-        StorageReference pathRef = mStorage.getReference();
-        StorageReference pathReference = pathRef.child(userId + "/kidpic.jpg");
-        Log.d("DATASTUFF", pathReference.toString());
-        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        StorageReference pathRefKid = mStorage.getReference();
+        StorageReference pathReferenceKid = pathRefKid.child(userId + "/kidpic.jpg");
+        Log.d("DATASTUFF", pathReferenceKid.toString());
+        pathReferenceKid.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 String imageURL = uri.toString();
@@ -153,4 +180,6 @@ public class LoginKidActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
 }

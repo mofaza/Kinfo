@@ -5,7 +5,7 @@
     <string name="sign_up">SIGN UP</string>
     <string name="log_in">LOG IN</string>
     <string name="kids_name">Kid\'s name</string>
-    <string name="password">Password</string>
+    <string name="password">Password (minimum 6 symbols)</string>
     <string name="kids_name_full">Kid\'s name (full)</string>
     <string name="add_kid">Add Kid</string>
     <string name="food_allergies">Food allergies and dislikes</string>
@@ -32,4 +32,6 @@
     <string name="gluten_intolerant">Gluten intolerant</string>
     <string name="no">No</string>
     <string name="email_address">Email address</string>
+    <string name="create_new_user">Create new user</string>
+    <string name="password_check">Password (again)</string>
 </resources>

@@ -4,41 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddKidActivity"
+    tools:context=".CreateUser"
     android:layout_marginStart="30dp"
     android:layout_marginEnd="30dp"
     >
 
     <TextView
-        android:id="@+id/Add_kid"
+        android:id="@+id/Create_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_black"
-        android:text="@string/add_kid"
+        android:text="@string/create_new_user"
         android:textSize="35sp"
         android:layout_marginTop="30dp"
         android:textColor="@color/colorPrimaryDark"
         />
 
-
-    <ImageView
-        android:id="@+id/add_photo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="fitCenter"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/Add_kid"
-        android:layout_marginTop="30dp"
-        android:onClick="pic"
-        android:background="@drawable/add_photo_button"
-        />
-
-
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_photo"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/Create_user"
+        android:layout_marginTop="50dp"
         android:layout_above="@id/buttonlayout"
         android:layout_marginBottom="10dp"
         tools:context="elias.lind.kinfo.AddKidActivity"
@@ -49,61 +35,42 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
->
+            >
 
             <EditText
-                android:inputType="text"
-                android:id="@+id/editText_addKidsName"
+                android:inputType="textEmailAddress"
+                android:id="@+id/editText_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/kids_name_full"
+                android:hint="@string/email"
                 />
 
             <EditText
-                android:inputType="text"
-                android:id="@+id/editText_foodAllergies"
+                android:inputType="textEmailAddress"
+                android:id="@+id/editText_emailcheck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/food_allergies"
+                android:hint="@string/email_check"
                 android:layout_marginTop="20dp"
                 />
 
             <EditText
-                android:inputType="text"
-                android:id="@+id/editText_animalAllergies"
+                android:inputType="textVisiblePassword"
+                android:id="@+id/editText_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/animal_allergies"
+                android:hint="@string/password"
                 android:layout_marginTop="20dp"
                 />
 
             <EditText
-                android:inputType="text"
-                android:id="@+id/editText_message"
+                android:inputType="textVisiblePassword"
+                android:id="@+id/editText_password_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/message"
+                android:hint="@string/password_check"
                 android:layout_marginTop="20dp"
 
-                />
-
-            <EditText
-                android:inputType="text"
-                android:id="@+id/editText_favoriteAnimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/kids_favorite_animal"
-                android:layout_marginTop="20dp"
-
-                />
-
-            <EditText
-                android:inputType="text"
-                android:id="@+id/editText_favoriteAnimalCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/kids_favorite_animal_check"
-                android:layout_marginTop="20dp"
                 />
 
         </LinearLayout>

@@ -5,24 +5,19 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Message;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,7 +26,7 @@ import java.io.IOException;
 
 public class AddKidActivity extends AppCompatActivity {
 
-    public String PASSWORD;
+    public String KIDPASSWORD;
     public String NAME;
     public String FOODALLER;
     public String ANIMALALLER;
@@ -46,13 +41,12 @@ public class AddKidActivity extends AppCompatActivity {
     private EditText mFoodAllergies;
     private EditText mAnimalAllergies;
     private EditText mMessage;
-    private EditText mPassword;
-    private EditText mPasswordCheck;
+    private EditText mKidPassword;
+    private EditText mKidPasswordCheck;
 
-    private ImageButton mAddPhoto;
+    private ImageView mAddPhoto;
     private Button mCancle;
     private Button mNext;
-    private CircularImageView mProfilePic;
 
     public static final int GALLERY_REQUEST =1;
 
@@ -70,25 +64,30 @@ public class AddKidActivity extends AppCompatActivity {
         mFoodAllergies = findViewById(R.id.editText_foodAllergies);
         mAnimalAllergies = findViewById(R.id.editText_animalAllergies);
         mMessage = findViewById(R.id.editText_message);
-        mPassword = findViewById(R.id.editText_favoriteAnimal);
-        mPasswordCheck = findViewById(R.id.editText_favoriteAnimalCheck);
+        mKidPassword = findViewById(R.id.editText_favoriteAnimal);
+        mKidPasswordCheck = findViewById(R.id.editText_favoriteAnimalCheck);
 
 
         mAddPhoto = findViewById(R.id.add_photo);
         mCancle = findViewById(R.id.buttonCancel);
         mNext = findViewById(R.id.buttonNext);
-        mProfilePic = findViewById(R.id.profilepic);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.add_photo_button)
+                .apply(RequestOptions.circleCropTransform())
+                .into(mAddPhoto);
 
     }
+
 
     public void next(View view) {
         FOODALLER = mFoodAllergies.getText().toString();
         ANIMALALLER = mAnimalAllergies.getText().toString();
         MESSAGE = mMessage.getText().toString();
         NAME = mAddKidsName.getText().toString();
-        PASSWORD = mPassword.getText().toString();
+        KIDPASSWORD = mKidPassword.getText().toString();
 
-        isPasswordValid(PASSWORD);
+        isPasswordValid(KIDPASSWORD);
 
         if (passwordOK){
             if (!NAME.isEmpty() && !FOODALLER.isEmpty() && !ANIMALALLER.isEmpty() && !MESSAGE.isEmpty()) {
@@ -97,13 +96,14 @@ public class AddKidActivity extends AppCompatActivity {
                 ((LocalVars) this.getApplication()).setFOODALLER(FOODALLER);
                 ((LocalVars) this.getApplication()).setANIMALALLER(ANIMALALLER);
                 ((LocalVars) this.getApplication()).setMESSAGE(MESSAGE);
-                ((LocalVars) this.getApplication()).setPASSWORD(PASSWORD);
+                ((LocalVars) this.getApplication()).setKIDPASSWORD(KIDPASSWORD);
 
 
                 //mDatabaseReference.child("User").child(NAME).setValue(user);
                 //Toast.makeText(getBaseContext(), "It works", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(this, AddGrownupActivity.class);
+                finish();
                 startActivity(intent);
             }
             else {
@@ -133,14 +133,19 @@ public class AddKidActivity extends AppCompatActivity {
                     Uri selectedImage = data.getData();
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                        mProfilePic.setImageBitmap(bitmap);
-                        mProfilePic.setDrawingCacheEnabled(true);
-                        mProfilePic.buildDrawingCache();
-                        Bitmap bitmaps = ((BitmapDrawable) mProfilePic.getDrawable()).getBitmap();
+                        mAddPhoto.setImageBitmap(bitmap);
+                        Bitmap bitmaps = ((BitmapDrawable) mAddPhoto.getDrawable()).getBitmap();
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         bitmaps.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                         byte[] datas = baos.toByteArray();
                         ((LocalVars) this.getApplication()).setData(datas);
+
+                        Glide.with(getApplicationContext())
+                                .load(bitmap)
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(mAddPhoto);
+                        mAddPhoto.setRotation(90);
+
                         
                     } catch (IOException e) {
                         Log.i("TAG", "Some exception " + e);
@@ -150,8 +155,8 @@ public class AddKidActivity extends AppCompatActivity {
             }
     }
     private void isPasswordValid (String password) {
-        String confirmPassword = mPasswordCheck.getText().toString();
-        if (confirmPassword.equals(password) && password.length() > 5){
+        String confirmPassword = mKidPasswordCheck.getText().toString();
+        if (confirmPassword.equals(password) && password.length() > 2){
             passwordOK = true;
         } else{
             Toast.makeText(getBaseContext(), "The password is incorrect", Toast.LENGTH_SHORT).show();
