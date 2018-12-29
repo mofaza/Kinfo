@@ -1,6 +1,7 @@
 package elias.lind.kinfo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class AddGrownupActivity extends AddKidActivity {
 
@@ -40,6 +46,7 @@ public class AddGrownupActivity extends AddKidActivity {
     private Button mFinish;
 
     private FirebaseAuth mAuth;
+    private FirebaseStorage mStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +66,8 @@ public class AddGrownupActivity extends AddKidActivity {
         mAddress = findViewById(R.id.editText_address);
 
         mAuth = FirebaseAuth.getInstance();
+
+        mStorage = FirebaseStorage.getInstance();
 
 
     }
@@ -92,6 +101,7 @@ public class AddGrownupActivity extends AddKidActivity {
 
         isEmailValid(EMAIL, emailcheck);
 
+
         if (emailOK && !GROWNUP.isEmpty() && !EMAIL.isEmpty() && !emailcheck.isEmpty() && !RELATIONSHIP.isEmpty() && !PHONE.isEmpty() && !ADDRESS.isEmpty()){
 
             User userdata = new User(
@@ -112,6 +122,24 @@ public class AddGrownupActivity extends AddKidActivity {
             mDatabaseReference.child("User").child(user.getUid()).setValue(userdata);
 
 
+            // Create a storage reference from our app
+            StorageReference storageRef = mStorage.getReference();
+
+            // Create a reference to "mountains.jpg"
+            StorageReference childPicRef = storageRef.child(user.getUid() + "/kidpic.jpg");
+
+            UploadTask uploadTask = childPicRef.putBytes(((LocalVars) this.getApplication()).getData());
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                }
+            });
 
             Intent intent = new Intent(this, LoginKidActivity.class);
             finish();

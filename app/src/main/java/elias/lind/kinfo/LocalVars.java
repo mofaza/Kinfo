@@ -18,6 +18,16 @@ public class LocalVars extends Application {
 
     private String UID;
 
+    private byte[] data;
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
     public String getPASSWORD() {
         return PASSWORD;
     }

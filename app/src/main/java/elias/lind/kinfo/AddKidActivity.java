@@ -3,6 +3,7 @@ package elias.lind.kinfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class AddKidActivity extends AppCompatActivity {
@@ -119,6 +121,7 @@ public class AddKidActivity extends AppCompatActivity {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+
     }
 
     @Override
@@ -131,9 +134,18 @@ public class AddKidActivity extends AppCompatActivity {
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                         mProfilePic.setImageBitmap(bitmap);
+                        mProfilePic.setDrawingCacheEnabled(true);
+                        mProfilePic.buildDrawingCache();
+                        Bitmap bitmaps = ((BitmapDrawable) mProfilePic.getDrawable()).getBitmap();
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bitmaps.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        byte[] datas = baos.toByteArray();
+                        ((LocalVars) this.getApplication()).setData(datas);
+                        
                     } catch (IOException e) {
                         Log.i("TAG", "Some exception " + e);
                     }
+
                     break;
             }
     }

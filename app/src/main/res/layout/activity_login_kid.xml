@@ -250,6 +250,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/call"
+                android:onClick="call"
                 />
 
             <ImageView
@@ -258,6 +259,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/text"
+                android:onClick="sendText"
                 />
 
             <ImageView
@@ -266,6 +268,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/address"
+                android:onClick="openMaps"
                 />
 
         </LinearLayout>
