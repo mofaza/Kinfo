@@ -82,12 +82,13 @@ public class LoginKidActivity extends AppCompatActivity {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         userId = ((LocalVars) this.getApplication()).getUID();
+        Log.d("HEJE", userId);
 
         setKidPic();
         setGrownupPic();
 
 
-        mDatabaseReference.child("User").child(userId).addListenerForSingleValueEvent(
+        mDatabaseReference.child("Users").child("User").child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -175,7 +176,7 @@ public class LoginKidActivity extends AppCompatActivity {
     }
 
     public void openMaps(View view) {
-        String uri = String.format(Locale.ENGLISH, "geo:0,0?q="+address);
+        String uri = "geo:0,0?q="+address;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
 

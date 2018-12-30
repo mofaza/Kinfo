@@ -109,12 +109,14 @@ public class AddGrownupActivity extends AddKidActivity {
             final FirebaseUser user = mAuth.getCurrentUser();
             ((LocalVars) this.getApplication()).setUID(user.getUid());
 
-            /*KidUser kiduserdata = new KidUser(
+            KidUser kiduserdata = new KidUser(
                     ((LocalVars) this.getApplication()).getNAME(),
                     ((LocalVars) this.getApplication()).getUID(),
-                    ((LocalVars) this.getApplication()).getKIDPASSWORD());*/
+                    ((LocalVars) this.getApplication()).getKIDPASSWORD());
 
-            mDatabaseReference.child("User").child(user.getUid()).setValue(userdata);
+            mDatabaseReference.child("Users").child("User").child(user.getUid()).setValue(userdata);
+            mDatabaseReference.child("Users").child("User").child("Credentials").setValue(kiduserdata);
+
 
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                     .setDisplayName(((LocalVars) this.getApplication()).getNAME())
@@ -166,7 +168,7 @@ public class AddGrownupActivity extends AddKidActivity {
             });
 
             Intent intent = new Intent(this, StartActivity.class);
-            Toast.makeText(this, "The profile is created. Log in to review/edit it", Toast.LENGTH_LONG);
+            Toast.makeText(this, "The profile is created. Log in to review/edit it", Toast.LENGTH_LONG).show();
             finish();
             startActivity(intent);
         }

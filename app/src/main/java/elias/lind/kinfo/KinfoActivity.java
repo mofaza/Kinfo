@@ -76,7 +76,7 @@ public class KinfoActivity extends AppCompatActivity {
         setGrownupPic();
 
 
-        mDatabaseReference.child("User").child(userId).addListenerForSingleValueEvent(
+        mDatabaseReference.child("Users").child("User").child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -164,7 +164,7 @@ public class KinfoActivity extends AppCompatActivity {
     }
 
     public void openMaps(View view) {
-        String uri = String.format(Locale.ENGLISH, "geo:0,0?q="+address);
+        String uri = "geo:0,0?q="+address;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
 

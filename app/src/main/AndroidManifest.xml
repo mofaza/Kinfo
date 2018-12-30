@@ -42,10 +42,13 @@
 
         <activity
             android:name=".LoginKidActivity"
-            android:label="@string/title_activity_login_kid"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/LoginTheme"
+            android:screenOrientation="portrait"
+            />
+
+
         <activity android:name=".CreateUser" />
-        <activity android:name=".SearchKinfoActivity"></activity>
+        <activity android:name=".SearchKinfoActivity" />
     </application>
 
 </manifest>

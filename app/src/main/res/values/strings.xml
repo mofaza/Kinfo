@@ -35,4 +35,6 @@
     <string name="create_new_user">Create new user</string>
     <string name="password_check">Password (again)</string>
     <string name="pass">Password</string>
+    <string name="contentdescription">contentdescription</string>
+    <string name="placeholder">placeholder</string>
 </resources>

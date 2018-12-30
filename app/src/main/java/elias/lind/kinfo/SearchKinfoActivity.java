@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,6 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -23,7 +25,6 @@ public class SearchKinfoActivity extends AppCompatActivity {
     private EditText userName;
     private EditText passWord;
 
-    private FirebaseAuth mAuth;
     public DatabaseReference mDatabaseReference;
 
 
@@ -35,22 +36,45 @@ public class SearchKinfoActivity extends AppCompatActivity {
         userName = findViewById(R.id.editText_kidsname);
         passWord = findViewById(R.id.editText_password);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("User");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
 
     }
 
     public void login(View view) {
 
-        String username = userName.getText().toString();
-        String password = passWord.getText().toString();
+        final String username = userName.getText().toString();
+        final String password = passWord.getText().toString();
 
-//to store values in your credentials node just use this code
+        if (!username.isEmpty() && !password.isEmpty()) {
+            mDatabaseReference.child("Users").child("User").child("Credentials").addListenerForSingleValueEvent(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Get user value
+                            KidUser kiduser = dataSnapshot.getValue(KidUser.class);
+                            if (kiduser.getKidsname().equals(username) && kiduser.getKidpassword().equals(password)) {
 
-        Log.d("HEJE", mDatabaseReference.child("Kidsname").toString());
-        //ref.child("usernames").child(username).child("password").setValue(password);
+                                ((LocalVars) getApplication()).setUID(kiduser.getUid());
+
+                                Intent intent = new Intent(getBaseContext(), KinfoActivity.class);
+                                finish();
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Wrong kids name or password", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.d("HEJE", "getUser:onCancelled", databaseError.toException());
+                        }
+                    });
+        }
+        else {
+            Toast.makeText(getBaseContext(), "Missing kidsname or password", Toast.LENGTH_LONG).show();
+        }
     }
 
 

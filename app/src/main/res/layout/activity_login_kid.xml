@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginKidActivity"
-    android:theme="@style/KinfoTheme"
+    android:theme="@style/LoginTheme"
     android:background="@color/colorWhite"
     >
 
@@ -31,6 +31,7 @@
     </RelativeLayout>
 
     <ImageView
+        android:contentDescription="@string/contentdescription"
         android:id="@+id/kidPicture"
         android:layout_width="170dp"
         android:layout_height="170dp"
@@ -65,6 +66,7 @@
             >
 
             <ImageView
+                android:contentDescription="@string/contentdescription"
                 android:id="@+id/foodAllergies"
                 android:layout_width="1dp"
                 android:layout_height="50dp"
@@ -83,7 +85,8 @@
                 android:layout_weight="2"
                 android:textStyle="bold"
                 android:gravity="center_vertical"
-                android:paddingStart="10dp"/>
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"/>
 
         </LinearLayout>
 
@@ -96,6 +99,7 @@
             >
 
             <ImageView
+                android:contentDescription="@string/contentdescription"
                 android:id="@+id/animalAllergies"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
@@ -114,7 +118,8 @@
                 android:layout_weight="2"
                 android:textStyle="bold"
                 android:gravity="center_vertical"
-                android:paddingStart="10dp"/>
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"/>
         </LinearLayout>
 
 
@@ -157,7 +162,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto"
-            android:text="This is our son Filip. \nCall us if you need anything!  :D"
+            android:text="@string/placeholder"
             android:textColor="@color/textGray"
             android:textSize="15sp" />
 
@@ -170,7 +175,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/roboto_italic"
-            android:text="Louise and Elias"
+            android:text="@string/placeholder"
             android:textAlignment="textEnd"
             android:textColor="@color/textGray"
             android:textStyle="italic" />
@@ -192,6 +197,7 @@
         >
 
         <ImageView
+            android:contentDescription="@string/contentdescription"
             android:id="@+id/grownup_picture2"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -246,6 +252,7 @@
             >
 
             <ImageView
+                android:contentDescription="@string/contentdescription"
                 android:id="@+id/call"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -255,6 +262,7 @@
                 />
 
             <ImageView
+                android:contentDescription="@string/contentdescription"
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -264,6 +272,7 @@
                 />
 
             <ImageView
+                android:contentDescription="@string/contentdescription"
                 android:id="@+id/address"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
