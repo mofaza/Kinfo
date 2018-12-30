@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +18,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -48,6 +55,8 @@ public class AddKidActivity extends AppCompatActivity {
     private Button mCancle;
     private Button mNext;
 
+
+
     public static final int GALLERY_REQUEST =1;
 
 
@@ -67,16 +76,13 @@ public class AddKidActivity extends AppCompatActivity {
         mKidPassword = findViewById(R.id.editText_favoriteAnimal);
         mKidPasswordCheck = findViewById(R.id.editText_favoriteAnimalCheck);
 
-
         mAddPhoto = findViewById(R.id.add_photo);
         mCancle = findViewById(R.id.buttonCancel);
         mNext = findViewById(R.id.buttonNext);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.add_photo_button)
-                .apply(RequestOptions.circleCropTransform())
                 .into(mAddPhoto);
-
     }
 
 
@@ -146,7 +152,8 @@ public class AddKidActivity extends AppCompatActivity {
                                 .into(mAddPhoto);
                         mAddPhoto.setRotation(90);
 
-                        
+
+
                     } catch (IOException e) {
                         Log.i("TAG", "Some exception " + e);
                     }

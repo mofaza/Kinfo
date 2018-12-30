@@ -78,7 +78,6 @@ public class AddGrownupActivity extends AddKidActivity {
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.add_photo_button)
-                .apply(RequestOptions.circleCropTransform())
                 .into(mAddPhoto);
 
     }
