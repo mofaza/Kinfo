@@ -44,7 +44,8 @@
             android:name=".LoginKidActivity"
             android:label="@string/title_activity_login_kid"
             android:theme="@style/AppTheme" />
-        <activity android:name=".CreateUser"></activity>
+        <activity android:name=".CreateUser" />
+        <activity android:name=".SearchKinfoActivity"></activity>
     </application>
 
 </manifest>

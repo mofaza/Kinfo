@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity"
+    tools:context=".SearchKinfoActivity"
     android:background="@color/colorBackground"
     android:orientation="vertical"
     android:weightSum="100"
@@ -42,54 +42,49 @@
         android:layout_weight="30"
         >
 
-
-        <Button
-            android:id="@+id/buttonSearchKinfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search_kinfo"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_orange"
-            android:textSize="18sp"
-            android:textColor="@color/colorWhite"
-            android:onClick="search"
-            />
-
-
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/buttonSearchKinfo"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="10dp"
+            android:windowSoftInputMode="adjustPan"
+
             >
 
-            <Button
-                android:id="@+id/buttonSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sign_up"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"
-                android:textSize="18sp"
-                android:background="@drawable/button_transparent"
-                android:textColor="@color/colorWhite"
+            <android.support.v7.widget.AppCompatEditText
+                android:inputType="text"
+                android:id="@+id/editText_kidsname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/kids_name_full"
+                app:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                />
+
+
+            <android.support.v7.widget.AppCompatEditText
+                android:inputType="textVisiblePassword"
+                android:id="@+id/editText_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/pass"
+                app:backgroundTint="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
 
                 />
 
             <Button
-                android:id="@+id/buttonLogIn"
-                android:layout_width="wrap_content"
+                android:id="@+id/buttonLoginBig"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/log_in"
-                android:layout_weight="1"
-                android:layout_marginStart="5dp"
+                android:text="@string/search_kinfo"
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_orange"
                 android:textSize="18sp"
-                android:background="@drawable/button_yellow"
                 android:textColor="@color/colorBlack"
                 android:onClick="login"
                 />

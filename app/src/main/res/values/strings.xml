@@ -18,7 +18,7 @@
     <string name="grownups_name_full">Grown up\'s name (full)</string>
     <string name="relation_to_kid">Relationship to kid</string>
     <string name="phone_number">Mobile phone number</string>
-    <string name="address">Address</string>
+    <string name="address">Address - street, city</string>
     <string name="add_extra_grownup">ADD ANOTHER GROWN UP</string>
     <string name="finish">FINISH</string>
     <string name="name">Filip Danielsson</string>
@@ -34,4 +34,5 @@
     <string name="email_address">Email address</string>
     <string name="create_new_user">Create new user</string>
     <string name="password_check">Password (again)</string>
+    <string name="pass">Password</string>
 </resources>

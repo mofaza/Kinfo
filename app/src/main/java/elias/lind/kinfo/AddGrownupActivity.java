@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -105,11 +106,30 @@ public class AddGrownupActivity extends AddKidActivity {
                     ((LocalVars) this.getApplication()).getKIDPASSWORD()
                     );
 
-            FirebaseUser user = mAuth.getCurrentUser();
+            final FirebaseUser user = mAuth.getCurrentUser();
             ((LocalVars) this.getApplication()).setUID(user.getUid());
+
+            /*KidUser kiduserdata = new KidUser(
+                    ((LocalVars) this.getApplication()).getNAME(),
+                    ((LocalVars) this.getApplication()).getUID(),
+                    ((LocalVars) this.getApplication()).getKIDPASSWORD());*/
 
             mDatabaseReference.child("User").child(user.getUid()).setValue(userdata);
 
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(((LocalVars) this.getApplication()).getNAME())
+                    .setPhotoUri(Uri.parse(((LocalVars) this.getApplication()).getKIDPASSWORD()))
+                    .build();
+
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("HEJE", "User profile updated. " + user.getDisplayName() + " " + user.getPhotoUrl());
+                            }
+                        }
+                    });
 
             // Create a storage reference from our app
             StorageReference storageRef = mStorage.getReference();
