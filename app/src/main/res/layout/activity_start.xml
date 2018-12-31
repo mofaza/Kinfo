@@ -59,6 +59,7 @@
 
 
         <LinearLayout
+            android:clipToPadding="false"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,7 +80,7 @@
                 android:textSize="18sp"
                 android:background="@drawable/button_transparent"
                 android:textColor="@color/colorWhite"
-                />
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:id="@+id/buttonLogIn"
@@ -92,7 +93,7 @@
                 android:background="@drawable/button_yellow"
                 android:textColor="@color/colorBlack"
                 android:onClick="login"
-                />
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 

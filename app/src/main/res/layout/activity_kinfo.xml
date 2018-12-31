@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,10 +11,13 @@
     >
 
     <RelativeLayout
+        android:clipToPadding="false"
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@drawable/top_orange">
+        android:background="@drawable/top_orange"
+        tools:context="elias.lind.kinfo.LoginKidActivity"
+        android:elevation="8dp">
 
         <TextView
             android:id="@+id/kid_name"
@@ -38,11 +42,14 @@
         android:layout_below="@id/relativeLayout1"
         android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
-        android:elevation="1dp"
+        android:elevation="6dp"
+        tools:context="elias.lind.kinfo.LoginKidActivity"
         android:padding="5dp"
+
         />
 
     <LinearLayout
+        android:clipToPadding="false"
         android:orientation="vertical"
         android:id="@+id/whiteBox1"
         android:layout_width="match_parent"
@@ -52,8 +59,10 @@
         android:layout_marginTop="50dp"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="30dp"
+        android:elevation="5dp"
         android:weightSum="2"
-        android:paddingTop="15dp">
+        android:paddingTop="15dp"
+        tools:context="elias.lind.kinfo.LoginKidActivity">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -77,13 +86,13 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
+                android:text="@string/gluten_intolerant"
                 android:textColor="@color/textGray"
                 android:textSize="12sp"
                 android:layout_weight="2"
                 android:textStyle="bold"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
-                android:text="@string/placeholder"
                 android:paddingEnd="0dp"/>
 
         </LinearLayout>
@@ -110,12 +119,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
+                android:text="@string/no"
                 android:textColor="@color/textGray"
                 android:textSize="12sp"
                 android:layout_weight="2"
                 android:textStyle="bold"
                 android:gravity="center_vertical"
-                android:text="@string/placeholder"
                 android:paddingStart="10dp"
                 android:paddingEnd="0dp"/>
         </LinearLayout>
@@ -135,7 +144,8 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="30dp"
-        android:elevation="8dp"
+        android:elevation="4dp"
+        tools:context="elias.lind.kinfo.LoginKidActivity"
         >
 
 
@@ -159,8 +169,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto"
-            android:textColor="@color/textGray"
             android:text="@string/placeholder"
+            android:textColor="@color/textGray"
             android:textSize="15sp" />
 
         <TextView
@@ -189,12 +199,13 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="30dp"
-        android:elevation="8dp"
+        android:elevation="4dp"
+        tools:context="elias.lind.kinfo.LoginKidActivity"
         >
 
         <ImageView
             android:contentDescription="@string/contentdescription"
-            android:id="@+id/gp"
+            android:id="@+id/grownup_picture1"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
@@ -202,6 +213,7 @@
             android:layout_marginStart="20dp"
             android:background="@drawable/circular_photo"
             android:padding="3dp"
+            tools:context="elias.lind.kinfo.LoginKidActivity"
             />
 
         <LinearLayout
@@ -213,7 +225,7 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/relationship"
+                android:id="@+id/relationship1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/relationship"
@@ -224,7 +236,110 @@
 
                 />
             <TextView
-                android:id="@+id/grownup_name"
+                android:id="@+id/grownup_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grownups_name_SET"
+                android:textColor="@color/colorOrange"
+                android:fontFamily="@font/roboto"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/smallis1"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:weightSum="3"
+            >
+
+            <ImageView
+                android:contentDescription="@string/contentdescription"
+                android:id="@+id/call1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/call"
+                android:onClick="call1"
+                />
+
+            <ImageView
+                android:contentDescription="@string/contentdescription"
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/text"
+                android:onClick="sendText1"
+                />
+
+            <ImageView
+                android:contentDescription="@string/contentdescription"
+                android:id="@+id/address1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/address"
+                android:onClick="openMaps1"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_parent2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearlayout_parent1"
+        android:background="@drawable/box_white"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="30dp"
+        android:elevation="4dp"
+        tools:context="elias.lind.kinfo.LoginKidActivity"
+        >
+
+        <ImageView
+            android:contentDescription="@string/contentdescription"
+            android:id="@+id/grownup_picture2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/circular_photo"
+            android:padding="3dp"
+            tools:context="elias.lind.kinfo.LoginKidActivity"
+            />
+
+        <LinearLayout
+            android:id="@+id/smallLayout2"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/relationship2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/relationship"
+                android:textColor="@color/textGray"
+                android:fontFamily="@font/roboto"
+                android:textStyle="bold"
+                android:textSize="20sp"
+
+                />
+            <TextView
+                android:id="@+id/grownup_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grownups_name_SET"
@@ -254,7 +369,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/call"
-                android:onClick="call"
+                android:onClick="call2"
                 />
 
             <ImageView
@@ -264,7 +379,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/text"
-                android:onClick="sendText"
+                android:onClick="sendText2"
                 />
 
             <ImageView
@@ -274,12 +389,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/address"
-                android:onClick="openMaps"
+                android:onClick="openMaps2"
                 />
 
         </LinearLayout>
     </LinearLayout>
-
 
 
 </RelativeLayout>

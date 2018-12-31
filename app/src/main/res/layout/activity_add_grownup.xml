@@ -23,11 +23,12 @@
 
 
     <ImageView
+        android:contentDescription="@string/contentdescription"
         android:id="@+id/add_photo_grownup"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/add_photo_button"
+        android:background="@drawable/circular_photo"
         android:layout_below="@id/Add_kid"
         android:layout_marginTop="30dp"
         android:onClick="grownuppic"
@@ -94,6 +95,7 @@
     </ScrollView>
 
     <Button
+
         android:id="@+id/buttonAddExtraGrownup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,10 +105,12 @@
         android:background="@drawable/button_blue"
         android:textColor="@color/colorWhite"
         android:layout_above="@id/buttonlayout"
+        android:onClick="addAnotherGrownup"
         />
 
 
     <LinearLayout
+        android:clipToPadding="false"
         android:id="@+id/buttonlayout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -126,8 +130,7 @@
             android:textSize="18sp"
             android:background="@drawable/button_transparent_blue"
             android:textColor="@color/colorPrimaryDark"
-
-            />
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/buttonFinish"
@@ -140,7 +143,7 @@
             android:background="@drawable/button_orange"
             android:textColor="@color/colorWhite"
             android:onClick="finish"
-            />
+            tools:ignore="ButtonStyle" />
 
 
     </LinearLayout>

@@ -38,7 +38,6 @@ public class SearchKinfoActivity extends AppCompatActivity {
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
-
     }
 
     public void login(View view) {
@@ -47,30 +46,39 @@ public class SearchKinfoActivity extends AppCompatActivity {
         final String password = passWord.getText().toString();
 
         if (!username.isEmpty() && !password.isEmpty()) {
-            mDatabaseReference.child("Users").child("User").child("Credentials").addListenerForSingleValueEvent(
-                    new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Get user value
-                            KidUser kiduser = dataSnapshot.getValue(KidUser.class);
-                            if (kiduser.getKidsname().equals(username) && kiduser.getKidpassword().equals(password)) {
 
-                                ((LocalVars) getApplication()).setUID(kiduser.getUid());
+                mDatabaseReference.child("Users").child("User").child(username + password).addListenerForSingleValueEvent(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                // Get user value
+                                KidUser kiduser = dataSnapshot.getValue(KidUser.class);
+                                try {
+                                    kiduser.getKidsname();
 
-                                Intent intent = new Intent(getBaseContext(), KinfoActivity.class);
-                                finish();
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Wrong kids name or password", Toast.LENGTH_LONG).show();
+                                    if (kiduser.getKidsname().equals(username) && kiduser.getKidpassword().equals(password)) {
+
+                                        ((LocalVars) getApplication()).setUID(kiduser.getUid());
+
+                                        Intent intent = new Intent(getBaseContext(), KinfoActivity.class);
+                                        finish();
+                                        startActivity(intent);
+                                    }
+                                } catch (Exception nullPointer){
+                                    Log.d("SeachException", "No kid with that name or password - problem: " + nullPointer);
+                                    Toast.makeText(getBaseContext(), "Wrong kid name or favorite animal", Toast.LENGTH_LONG).show();
+                                }
+
                             }
 
-                        }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.d("HEJE", "getUser:onCancelled", databaseError.toException());
+                                Toast.makeText(getApplicationContext(), "Wrong kids name or password", Toast.LENGTH_LONG).show();
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.d("HEJE", "getUser:onCancelled", databaseError.toException());
-                        }
-                    });
+                            }
+                        });
+
         }
         else {
             Toast.makeText(getBaseContext(), "Missing kidsname or password", Toast.LENGTH_LONG).show();

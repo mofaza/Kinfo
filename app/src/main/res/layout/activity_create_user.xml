@@ -80,6 +80,7 @@
 
 
     <LinearLayout
+        android:clipToPadding="false"
         android:id="@+id/buttonlayout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -103,8 +104,7 @@
             android:background="@drawable/button_transparent_blue"
             android:textColor="@color/colorPrimaryDark"
             android:onClick="cancel"
-
-            />
+            tools:ignore="ButtonStyle,OnClick" />
 
         <Button
             android:id="@+id/buttonNext"
@@ -117,7 +117,7 @@
             android:background="@drawable/button_orange"
             android:textColor="@color/colorWhite"
             android:onClick="next"
-            />
+            tools:ignore="ButtonStyle" />
 
 
     </LinearLayout>

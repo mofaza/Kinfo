@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -22,7 +21,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -53,9 +51,13 @@ public class AddGrownupActivity extends AddKidActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
+    private User userdata;
+    private FirebaseUser user;
 
     public static final int GALLERY_REQUEST = 2;
     private byte[] datas;
+    private Integer grownupUsers = 0;
+    private Boolean addedGrownupUser = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,55 +84,25 @@ public class AddGrownupActivity extends AddKidActivity {
 
     }
 
-    public void finish(View view){
+    public void finish(View view) {
 
-        GROWNUP = mGrownup.getText().toString();
-        RELATIONSHIP = mRelationship.getText().toString();
-        PHONE = mPhone.getText().toString();
-        ADDRESS = mAddress.getText().toString();
+        setGrownupData();
+        KidUser kiduserdata = new KidUser(
+                ((LocalVars) this.getApplication()).getNAME(),
+                ((LocalVars) this.getApplication()).getUID(),
+                ((LocalVars) this.getApplication()).getKIDPASSWORD());
 
-        if (!GROWNUP.isEmpty() && !RELATIONSHIP.isEmpty() && !PHONE.isEmpty() && !ADDRESS.isEmpty()){
-
-            User userdata = new User(
-                    ((LocalVars) this.getApplication()).getNAME(),
-                    ((LocalVars) this.getApplication()).getFOODALLER(),
-                    ((LocalVars) this.getApplication()).getANIMALALLER(),
-                    ((LocalVars) this.getApplication()).getMESSAGE(),
-                    ((LocalVars) this.getApplication()).getPASSWORD(),
-                    GROWNUP,
-                    ((LocalVars) this.getApplication()).getEMAIL(),
-                    RELATIONSHIP,
-                    PHONE,
-                    ADDRESS,
-                    ((LocalVars) this.getApplication()).getKIDPASSWORD()
-                    );
-
-            final FirebaseUser user = mAuth.getCurrentUser();
-            ((LocalVars) this.getApplication()).setUID(user.getUid());
-
-            KidUser kiduserdata = new KidUser(
-                    ((LocalVars) this.getApplication()).getNAME(),
-                    ((LocalVars) this.getApplication()).getUID(),
-                    ((LocalVars) this.getApplication()).getKIDPASSWORD());
-
-            mDatabaseReference.child("Users").child("User").child(user.getUid()).setValue(userdata);
-            mDatabaseReference.child("Users").child("User").child("Credentials").setValue(kiduserdata);
+        if (grownupUsers == 2 && !GROWNUP.isEmpty() && !RELATIONSHIP.isEmpty() && !PHONE.isEmpty() && !ADDRESS.isEmpty()){
+            mDatabaseReference.child("Users").child("User").child(user.getUid()).child("Grownup2").setValue(userdata);
+            mDatabaseReference.child("Users").child("User").child(user.getUid()).child("Grownup1").child("grownupUsers").setValue(2);
 
 
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(((LocalVars) this.getApplication()).getNAME())
-                    .setPhotoUri(Uri.parse(((LocalVars) this.getApplication()).getKIDPASSWORD()))
-                    .build();
+        } else if (grownupUsers == 1){
+            mDatabaseReference.child("Users").child("User").child(user.getUid()).child("Grownup1").setValue(userdata);
+        }
 
-            user.updateProfile(profileUpdates)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Log.d("HEJE", "User profile updated. " + user.getDisplayName() + " " + user.getPhotoUrl());
-                            }
-                        }
-                    });
+        if (grownupUsers >0){
+            mDatabaseReference.child("Users").child("User").child(((LocalVars) this.getApplication()).getNAME()+((LocalVars) this.getApplication()).getKIDPASSWORD()).setValue(kiduserdata);
 
             // Create a storage reference from our app
             StorageReference storageRef = mStorage.getReference();
@@ -167,12 +139,46 @@ public class AddGrownupActivity extends AddKidActivity {
             });
 
             Intent intent = new Intent(this, StartActivity.class);
-            Toast.makeText(this, "The profile is created. Log in to review/edit it", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "The profile is created. Log in to review/edit it", Toast.LENGTH_LONG).show();
             finish();
             startActivity(intent);
         }
     }
 
+
+
+    private void setGrownupData() {
+        user = mAuth.getCurrentUser();
+        GROWNUP = mGrownup.getText().toString();
+        RELATIONSHIP = mRelationship.getText().toString();
+        PHONE = mPhone.getText().toString();
+        ADDRESS = mAddress.getText().toString();
+
+        if (!GROWNUP.isEmpty() && !RELATIONSHIP.isEmpty() && !PHONE.isEmpty() && !ADDRESS.isEmpty()){
+
+            grownupUsers += 1;
+            userdata = new User(
+                    ((LocalVars) this.getApplication()).getNAME(),
+                    ((LocalVars) this.getApplication()).getFOODALLER(),
+                    ((LocalVars) this.getApplication()).getANIMALALLER(),
+                    ((LocalVars) this.getApplication()).getMESSAGE(),
+                    ((LocalVars) this.getApplication()).getPASSWORD(),
+                    GROWNUP,
+                    ((LocalVars) this.getApplication()).getEMAIL(),
+                    RELATIONSHIP,
+                    PHONE,
+                    ADDRESS,
+                    ((LocalVars) this.getApplication()).getKIDPASSWORD(),
+                    grownupUsers);
+
+            ((LocalVars) this.getApplication()).setUID(user.getUid());
+
+        }
+        else{
+            Toast.makeText(getBaseContext(), "Fill out all the fields, please", Toast.LENGTH_LONG).show();
+        }
+
+}
 
     public void grownuppic(View view) {
         Intent photoPickerIntent2 = new Intent(Intent.ACTION_PICK);
@@ -208,5 +214,21 @@ public class AddGrownupActivity extends AddKidActivity {
 
                     break;
             }
+    }
+
+    public void addAnotherGrownup(View view) {
+
+        if (grownupUsers <1){
+            setGrownupData();
+            mDatabaseReference.child("Users").child("User").child(user.getUid()).child("Grownup1").setValue(userdata);
+
+            mGrownup.getText().clear();
+            mRelationship.getText().clear();
+            mPhone.getText().clear();
+            mAddress.getText().clear();
+        } else {
+            Toast.makeText(getBaseContext(), "You can't add more than 2 grown ups at the moment", Toast.LENGTH_LONG).show();
+        }
+
     }
 }

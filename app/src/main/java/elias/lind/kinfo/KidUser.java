@@ -8,7 +8,9 @@ public class KidUser {
     private String kidpassword;
 
 
-    public KidUser(String kidsname, String uid, String kidpassword) {
+    public KidUser(String kidsname,
+                   String uid,
+                   String kidpassword) {
         this.kidsname = kidsname;
         this.uid = uid;
         this.kidpassword = kidpassword;
@@ -30,6 +32,8 @@ public class KidUser {
     public String getKidpassword() {
         return kidpassword;
     }
+
+
 
 
 }

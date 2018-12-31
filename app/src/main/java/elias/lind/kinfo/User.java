@@ -14,9 +14,21 @@ public class User {
     private String phonenumber;
     private String address;
     private String kidpassword;
+    private Integer grownupUsers;
 
 
-    public User(String kidsname, String foodallergies, String animalallergies, String message, String password, String grownup, String email, String relationship, String phonenumber, String address, String kidpassword) {
+    public User(String kidsname,
+                String foodallergies,
+                String animalallergies,
+                String message,
+                String password,
+                String grownup,
+                String email,
+                String relationship,
+                String phonenumber,
+                String address,
+                String kidpassword,
+                Integer grownupUsers) {
         this.kidsname = kidsname;
         this.foodallergies = foodallergies;
         this.animalallergies = animalallergies;
@@ -30,6 +42,7 @@ public class User {
         this.address = address;
         this.kidpassword = kidpassword;
 
+        this.grownupUsers = grownupUsers;
 
     }
 
@@ -79,6 +92,11 @@ public class User {
     public String getKidpassword() {
         return kidpassword;
     }
+
+    public Integer getGrownupUsers() {
+        return grownupUsers;
+    }
+
 
 
 }
