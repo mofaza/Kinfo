@@ -40,7 +40,8 @@ public class KinfoActivity extends AppCompatActivity {
     private LinearLayout mLinearLayoutParent2;
 
     private ImageView kidPicture;
-    private ImageView growupPicture;
+    private ImageView growupPicture1;
+    private ImageView growupPicture2;
 
     private String phone1;
     private String address1;
@@ -50,6 +51,7 @@ public class KinfoActivity extends AppCompatActivity {
     public DatabaseReference mDatabaseReference;
     private FirebaseStorage mStorage;
     private String userId;
+    private StorageReference mPathRef;
 
 
 
@@ -60,7 +62,9 @@ public class KinfoActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_kinfo);
 
         kidPicture = findViewById(R.id.kidPicture);
-        growupPicture = findViewById(R.id.grownup_picture1);
+        growupPicture1 = findViewById(R.id.grownup_picture1);
+        growupPicture2 = findViewById(R.id.grownup_picture2);
+
 
         kidsname = findViewById(R.id.kid_name);
         foodallergies = findViewById(R.id.foodAllergies_SET);
@@ -77,12 +81,9 @@ public class KinfoActivity extends AppCompatActivity {
         mLinearLayoutParent2 = findViewById(R.id.linearlayout_parent2);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
-
+        mStorage = FirebaseStorage.getInstance();
+        mPathRef = mStorage.getReference();
         userId = ((LocalVars) this.getApplication()).getUID();
-        Log.d("HEJE", userId);
-
-        setKidPic();
-        setGrownupPic();
 
         mDatabaseReference.child("Users").child("User").child(userId).child("Grownup1").addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -93,6 +94,8 @@ public class KinfoActivity extends AppCompatActivity {
 
                         if (user.getGrownupUsers() == 2){
                             mLinearLayoutParent2.setVisibility(View.VISIBLE);
+                            setGrownupPic(2);
+
 
                             mDatabaseReference.child("Users").child("User").child(userId).child("Grownup2").addListenerForSingleValueEvent(
                                     new ValueEventListener() {
@@ -116,8 +119,11 @@ public class KinfoActivity extends AppCompatActivity {
                                     });
                         } else {
                             mLinearLayoutParent2.setVisibility(View.INVISIBLE);
+                            setGrownupPic(1);
 
                         }
+
+                        setKidPic();
 
                         phone1 = user.getPhonenumber();
                         address1 = user.getAddress();
@@ -140,11 +146,24 @@ public class KinfoActivity extends AppCompatActivity {
 
     }
 
-    private void setGrownupPic() {
-        StorageReference pathRef = mStorage.getReference();
-        StorageReference pathReference = pathRef.child(userId + "/grownuppic.jpg");
-        Log.d("DATASTUFF", pathReference.toString());
-        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+    private void setGrownupPic(Integer numberOfGrownups) {
+        if (numberOfGrownups == 2){
+            String picnr2 = "grownuppic2.jpg";
+            String picnr1 = "grownuppic1.jpg";
+
+            loadGrownupPicture(picnr2, growupPicture2);
+            loadGrownupPicture(picnr1, growupPicture1);
+
+        } else {
+            String picnr1 = "grownuppic1.jpg";
+            loadGrownupPicture(picnr1, growupPicture1);
+
+        }
+    }
+
+    private void loadGrownupPicture(String pic, final ImageView growupPicture) {
+        StorageReference pathReference2 = mPathRef.child(userId + "/" + pic);
+        pathReference2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 String imageURL = uri.toString();
@@ -164,8 +183,6 @@ public class KinfoActivity extends AppCompatActivity {
 
 
     private void setKidPic() {
-        mStorage = FirebaseStorage.getInstance();
-
         StorageReference pathRefKid = mStorage.getReference();
         StorageReference pathReferenceKid = pathRefKid.child(userId + "/kidpic.jpg");
         Log.d("DATASTUFF", pathReferenceKid.toString());
