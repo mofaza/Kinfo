@@ -48,7 +48,8 @@
 
 
         <activity android:name=".CreateUser" />
-        <activity android:name=".SearchKinfoActivity" />
+        <activity android:name=".SearchKinfoActivity"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

@@ -94,7 +94,12 @@ public class CreateUser extends AppCompatActivity {
     }
 
     private void isEmailValid (String email, String emailcheck) {
-        emailOK = email.contains("@") && email.equals(emailcheck);
+        if (emailOK = email.contains("@") && email.equals(emailcheck)){
+            emailOK = true;
+        } else{
+            Toast.makeText(getBaseContext(), "The email is incorrect", Toast.LENGTH_SHORT).show();
+            emailOK = false;
+        }
     }
 
     private void createFirebaseUser(){
@@ -112,5 +117,9 @@ public class CreateUser extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void cancel(View view) {
+        finish();
     }
 }

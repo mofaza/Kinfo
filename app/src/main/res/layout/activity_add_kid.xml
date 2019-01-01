@@ -44,6 +44,7 @@
         android:layout_marginTop="30dp"
         android:layout_above="@id/buttonlayout"
         android:layout_marginBottom="10dp"
+        android:scrollbars="vertical"
         tools:context="elias.lind.kinfo.AddKidActivity"
         >
 
@@ -128,6 +129,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
+        android:windowSoftInputMode="adjustNothing"
 
         >
 
