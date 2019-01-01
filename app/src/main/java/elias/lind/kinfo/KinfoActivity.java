@@ -108,7 +108,6 @@ public class KinfoActivity extends AppCompatActivity {
                                                 phone2 = user.getPhonenumber();
                                                 address2 = user.getAddress();
                                                 relationship2.setText(user.getRelationship());
-                                                grownupname2.setText(user.getGrownup());
                                             }
                                         }
 
@@ -131,9 +130,29 @@ public class KinfoActivity extends AppCompatActivity {
                         foodallergies.setText(user.getFoodallergies());
                         animalallergies.setText(user.getAnimalallergies());
                         message.setText(user.getMessage());
-                        parentnames.setText(user.getGrownup());
                         relationship1.setText(user.getRelationship());
-                        grownupname1.setText(user.getGrownup());
+                        String[] splited = user.getGrownup().split("\\s+");
+                        grownupname1.setText(splited[0]);
+
+                        if (user.getGrownupUsers() == 2){
+                            mDatabaseReference.child("Users").child("User").child(userId).child("Grownup2").addListenerForSingleValueEvent(
+                                    new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            User user = dataSnapshot.getValue(User.class);
+                                            String[] splited = user.getGrownup().split("\\s+");
+                                            grownupname2.setText(splited[0]);
+                                            parentnames.setText(grownupname1.getText() + " & " + grownupname2.getText());
+                                        }
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            Log.d("HEJE", "getUser:onCancelled", databaseError.toException());
+                                        }
+                                    });
+                        } else {
+                            parentnames.setText(splited[0]);
+
+                        }
 
                         // ...
                     }

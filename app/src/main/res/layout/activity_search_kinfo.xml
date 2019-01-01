@@ -81,11 +81,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/search_kinfo"
-
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_orange"
                 android:textSize="18sp"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:onClick="login"
                 />
 

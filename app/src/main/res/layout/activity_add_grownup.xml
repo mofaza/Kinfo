@@ -67,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/relation_to_kid"
                 android:layout_marginTop="20dp"
+                android:maxLength="5"
                 />
 
             <EditText
