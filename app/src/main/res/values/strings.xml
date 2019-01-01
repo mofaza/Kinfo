@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Kinfo</string>
     <string name="logo">logo</string>
     <string name="search_kinfo">SEARCH KINFO</string>
@@ -12,7 +12,7 @@
     <string name="animal_allergies">Animal allergies and dislikes</string>
     <string name="message">Message to other grownups</string>
     <string name="kids_favorite_animal">Password (kid\'s favorite animal)</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="next">NEXT</string>
     <string name="add_grownup">Add grown up</string>
     <string name="grownups_name_full">Grown up\'s name (full)</string>
@@ -37,4 +37,6 @@
     <string name="pass">Password</string>
     <string name="contentdescription">contentdescription</string>
     <string name="placeholder">placeholder</string>
+    <string name="sign_out">Sign out</string>
+    <string name="edit_profile">Edit profile</string>
 </resources>

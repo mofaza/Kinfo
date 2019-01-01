@@ -26,6 +26,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -50,6 +53,9 @@ public class AddGrownupActivity extends AddKidActivity {
     private Button mAddGrownup;
     private Button mCancle;
     private Button mFinish;
+    private Integer counter;
+    private String popUser;
+    private String grownupPic;
 
     private FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
@@ -59,12 +65,17 @@ public class AddGrownupActivity extends AddKidActivity {
     public static final int GALLERY_REQUEST = 2;
     private byte[] datas;
     private Integer grownupUsers = 0;
-    private Boolean addedGrownupUser = false;
+    private String userId;
+    private StorageReference mPathRef;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grownup);
+
+        counter = 0;
 
         mAddPhoto = findViewById(R.id.add_photo_grownup);
         mAddGrownup = findViewById(R.id.buttonAddExtraGrownup);
@@ -77,13 +88,108 @@ public class AddGrownupActivity extends AddKidActivity {
         mAddress = findViewById(R.id.editText_address);
 
         mAuth = FirebaseAuth.getInstance();
-
         mStorage = FirebaseStorage.getInstance();
+        mPathRef = mStorage.getReference();
+        userId = ((LocalVars) this.getApplication()).getUID();
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.add_photo_button)
                 .into(mAddPhoto);
 
+        Intent intent = getIntent();
+        Integer edit = intent.getIntExtra("edit", 1);
+        if (edit == 2){
+            populateViewGrownup();
+            mAddGrownup.setVisibility(View.INVISIBLE);
+
+        }
+
+    }
+
+    private void populateViewGrownup() {
+        counter += 1;
+        if (counter == 1){
+            popUser = "Grownup1";
+            grownupPic = "grownuppic1.jpg";
+        } else {
+            popUser = "Grownup2";
+            grownupPic = "grownuppic2.jpg";
+        }
+
+
+        mDatabaseReference.child("Users").child("User").child(userId).child(popUser).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Get user value
+                        User user = dataSnapshot.getValue(User.class);
+
+                        if (user.getGrownupUsers() == 2 && counter == 1) {
+                            mFinish.setText(R.string.next);
+                            grownupUsers = 0;
+                            mFinish.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    addAnotherGrownup(v);
+                                    populateViewGrownup();
+
+                                }
+                            });
+                        }
+
+                        else {
+                            mFinish.setText(R.string.finish);
+                            mFinish.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish(v);
+                                }
+                            });
+
+                        }
+
+                        if (counter == 1){
+                            mDatabaseReference.child("Users").child("User").child(user.getKidsname()+user.getKidpassword()).removeValue();
+                        }
+
+                        mGrownup.setText(user.getGrownup());
+                        mRelationship.setText(user.getRelationship());
+                        mPhone.setText(user.getPhonenumber());
+                        mAddress.setText(user.getAddress());
+
+                        setGrownupPicture(grownupPic);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.d("HEJE", "getUser:onCancelled", databaseError.toException());
+                    }
+                });
+
+
+    }
+
+    private void setGrownupPicture(String grownuppic) {
+        StorageReference pathRefKid = mStorage.getReference();
+        StorageReference pathReferenceKid = pathRefKid.child(userId + "/"+grownuppic);
+        pathReferenceKid.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageURL = uri.toString();
+                Glide.with(getApplicationContext())
+                        .load(imageURL)
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(mAddPhoto);
+                mAddPhoto.setRotation(90);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
     }
 
     public void finish(View view) {
@@ -101,6 +207,7 @@ public class AddGrownupActivity extends AddKidActivity {
 
         } else if (grownupUsers == 1){
             mDatabaseReference.child("Users").child("User").child(user.getUid()).child("Grownup1").setValue(userdata);
+            uploadGrownupPicture();
         }
 
         if (grownupUsers >0){
@@ -108,7 +215,16 @@ public class AddGrownupActivity extends AddKidActivity {
 
             uploadKidPicture();
             Intent intent = new Intent(this, StartActivity.class);
-            Toast.makeText(getBaseContext(), "The profile is created. Log in to review/edit it", Toast.LENGTH_LONG).show();
+
+            if (counter != 0) {
+                Toast.makeText(getBaseContext(), "Your profile is updated. Login again to review it", Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(getBaseContext(), "The profile is created. Log in to review/edit it", Toast.LENGTH_LONG).show();
+            }
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            datas = null;
             finish();
             startActivity(intent);
         }
@@ -218,36 +334,48 @@ public class AddGrownupActivity extends AddKidActivity {
 
         if (grownupUsers == 2){
             StorageReference grownupPicRef = storageRef.child(user.getUid() + "/grownuppic2.jpg");
-            UploadTask uploadTaskGrownup = grownupPicRef.putBytes(datas);
 
-            uploadTaskGrownup.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                }
-            });
+            try {
+                UploadTask uploadTaskGrownup = grownupPicRef.putBytes(datas);
+
+                uploadTaskGrownup.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                    }
+                });
+
+            } catch (Exception e){
+                Log.d("Upload exception", "No new picture added:" + e);
+            }
         }
         else {
             StorageReference grownupPicRef = storageRef.child(user.getUid() + "/grownuppic1.jpg");
 
-            UploadTask uploadTaskGrownup = grownupPicRef.putBytes(datas);
+            try {
+                UploadTask uploadTaskGrownup = grownupPicRef.putBytes(datas);
+                uploadTaskGrownup.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                    }
+                });
+            } catch (Exception e){
+                Log.d("Upload exception", "No new picture added:" + e);
 
-            uploadTaskGrownup.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                }
-            });
+            }
+
+
         }
 
     }
@@ -255,19 +383,23 @@ public class AddGrownupActivity extends AddKidActivity {
     private void uploadKidPicture() {
         StorageReference storageRef = mStorage.getReference();
         StorageReference childPicRef = storageRef.child(user.getUid() + "/kidpic.jpg");
-        UploadTask uploadTaskKid = childPicRef.putBytes(((LocalVars) this.getApplication()).getData());
 
-        uploadTaskKid.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-            }
-        });
+        try {
+            UploadTask uploadTaskKid = childPicRef.putBytes(((LocalVars) this.getApplication()).getData());
+            uploadTaskKid.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                }
+            });
+        } catch (Exception e){
+            Log.d("Upload exception", "No new picture added:" + e);
+        }
 
     }
 }

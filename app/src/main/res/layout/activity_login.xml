@@ -40,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="30"
+        android:clipToPadding="false"
         >
 
         <LinearLayout
@@ -51,7 +52,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginTop="10dp"
             android:windowSoftInputMode="adjustPan"
-
+            android:clipToPadding="false"
             >
 
             <android.support.v7.widget.AppCompatEditText
@@ -80,7 +81,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/log_in"
-
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_yellow"
                 android:textSize="18sp"

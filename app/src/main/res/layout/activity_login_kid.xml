@@ -10,6 +10,15 @@
     android:background="@color/colorWhite"
     >
 
+    <FrameLayout
+        android:id="@+id/touchBox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="8.5dp"
+        android:onClick="hideSettingBox">
+
+    </FrameLayout>
+
     <RelativeLayout
         android:clipToPadding="false"
         android:id="@+id/relativeLayout1"
@@ -18,6 +27,22 @@
         android:background="@drawable/top_yellow"
         tools:context="elias.lind.kinfo.LoginKidActivity"
         android:elevation="8dp">
+
+
+
+        <ImageButton
+            android:contentDescription="@string/contentdescription"
+            android:id="@+id/imageButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/morebutton"
+            android:onClick="showSettingBox"
+            android:padding="5dp"/>
 
         <TextView
             android:id="@+id/kid_name"
@@ -32,6 +57,52 @@
             />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:id="@+id/editBox"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:background="@drawable/box_white2"
+        android:elevation="9dp"
+        android:weightSum="2"
+        tools:context="elias.lind.kinfo.LoginKidActivity"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <TextView
+            android:id="@+id/edit_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/edit_profile"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:onClick="editProfile"
+            />
+
+        <TextView
+            android:id="@+id/signout_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/sign_out"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"
+            android:layout_marginStart="20dp"
+            android:onClick="signOut"
+            />
+
+    </LinearLayout>
+
+
 
     <ImageView
         android:contentDescription="@string/contentdescription"
@@ -391,6 +462,7 @@
                 app:srcCompat="@drawable/address"
                 android:onClick="openMaps2"
                 />
+
 
         </LinearLayout>
     </LinearLayout>

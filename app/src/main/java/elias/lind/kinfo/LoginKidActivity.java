@@ -1,31 +1,21 @@
 package elias.lind.kinfo;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Registry;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestOptions;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,11 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Locale;
 
 public class LoginKidActivity extends AppCompatActivity {
 
@@ -52,6 +37,9 @@ public class LoginKidActivity extends AppCompatActivity {
     private TextView relationship2;
     private TextView grownupname2;
     private LinearLayout mLinearLayoutParent2;
+    private LinearLayout mLinearLayoutMore;
+    private FrameLayout touchBox;
+
 
     private ImageView kidPicture;
     private ImageView growupPicture1;
@@ -94,6 +82,11 @@ public class LoginKidActivity extends AppCompatActivity {
         relationship2= findViewById(R.id.relationship2);
         grownupname2 = findViewById(R.id.grownup_name2);
         mLinearLayoutParent2 = findViewById(R.id.linearlayout_parent2);
+        touchBox = findViewById(R.id.touchBox);
+        touchBox.setVisibility(View.INVISIBLE);
+
+        mLinearLayoutMore = findViewById(R.id.editBox);
+        mLinearLayoutMore.setVisibility(View.INVISIBLE);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance();
@@ -259,5 +252,27 @@ public class LoginKidActivity extends AppCompatActivity {
 
     }
 
+    public void showSettingBox(View view) {
+        mLinearLayoutMore.setVisibility(View.VISIBLE);
+        touchBox.setVisibility(View.VISIBLE);
+    }
 
+    public void hideSettingBox(View view) {
+        mLinearLayoutMore.setVisibility(View.INVISIBLE);
+        touchBox.setVisibility(View.INVISIBLE);
+    }
+
+    public void editProfile(View view) {
+        Intent intent = new Intent(this, AddKidActivity.class);
+        intent.putExtra("edit", 2);
+        finish();
+        startActivity(intent);
+    }
+
+
+    public void signOut(View view) {
+        Intent intent = new Intent(this, StartActivity.class);
+        finish();
+        startActivity(intent);
+    }
 }
